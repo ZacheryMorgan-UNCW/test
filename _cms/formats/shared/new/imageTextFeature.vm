@@ -1,0 +1,126 @@
+#macro(imageTextFeature)
+## What does this do??
+#set($block = $row.getChild("block").asset)
+
+## What does this do??
+#if(!$_PropertyTool.isEmpty($block))
+    #set($row = $block.getStructuredDataNode("text-image-feature"))
+#end
+
+#set($style = $row.getChild("style").textValue.toLowerCase()) ## "Blue", "Teal", "Grey"
+
+#set($imageAlignment = $row.getChild("image-alignment").textValue) ## "Left", "Right"
+
+#set($image = $row.getChild("image").asset)
+
+#set($imageAlt = $_EscapeTool.xml($row.getChild("image-alt").textValue))
+
+## Is it required to reset variables when they are required in the DD, so they will always be available
+#set($title = "")
+#set($description = "")
+
+#set($title = $_EscapeTool.xml($row.getChild("title").textValue))
+#set($description = $_EscapeTool.xml($row.getChild("description").textValue))
+
+## Link shared field
+## this should probably be consistent across every format
+## so it is easy to recognize what it is / where it's from
+## ie: "sharedLink"
+#set($button = $row.getChild("button"))
+
+<div class="itf itf--${style} container">
+    <div class="itf_image"><img src="[system-asset]${image.path}[/system-asset]" alt=""></div>
+    <div class="itf_content">
+        <h2>${title}</h2>
+        <p>${description}</p>
+        #linkData($button)
+        ## Would be easier if the values coming from linkData were named
+        ## linkData_url, linkData_target
+        ## instead of url, target
+        <a href="${url}" target="${target}">${label}</a>
+        #linkDataClear()
+    </div>
+</div>
+
+#end
+
+<style>
+
+.itf--blue .itf_content {
+    background-color: #002D5B;
+}
+
+.itf--teal .itf_content {
+    background-color: #008485;
+}
+
+.itf--grey .itf_content {
+    background-color: #F3F3F0;
+}
+
+.itf a,
+.itf h2 {
+    font-family: Lato;
+}
+
+.itf--grey a,
+.itf--grey h2 {
+    color: #008485;
+}
+
+.itf--blue a,
+.itf--blue h2 {
+    color: #FCC200;
+}
+
+.itf--teal a,
+.itf--teal h2,
+.itf-teal p {
+    color: #FFF;
+}
+
+.itf {
+    margin-bottom: 40px;
+    display: grid;
+}
+
+.itf_image img {
+    width: 100%;
+    height: 100%;
+}
+
+.itf_content {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    ## background: #f3f3f0;
+}
+
+.itf_content p {
+    margin-bottom: 20px;
+}
+
+.itf a {
+    font-weight: bold;
+}
+
+@media (min-width: 992px) {
+    .itf {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "image content";
+    }
+
+    .itf_image {
+        grid-area: image;
+    }
+
+    .itf_content {
+        grid-area: content;
+    }
+
+    .itf.row-reverse {
+        grid-template-areas: "content image";
+    }
+}
+</style>
