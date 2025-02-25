@@ -1,5 +1,5 @@
 #macro(imageTextFeature)
-## What does this do??
+## What does this do???
 #set($block = $row.getChild("block").asset)
 
 ## What does this do??
