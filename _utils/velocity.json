@@ -764,24 +764,129 @@
     "body": "\\$_XPathTool.selectSingleNode(${1:content}, ${2:xpath})",
     "description": "Returns a Node matching a given xpath expression within content."
   },
-  "$_ Autocomplete": {
-    "prefix": "$_",
-    "body": "\\${1|\\$_EscapeTool,\\$_Prototype,\\$_Math,\\$_String,\\$_Date,\\$_Resource,\\$_System|}",
-    "description": "Autocomplete for built-in objects"
+  ".metadata": {
+    "prefix": ".metadata",
+    "body": ".metadata",
+    "description": "Returns a metadata object."
   },
-  "$_EscapeTool": {
-    "prefix": "$_EscapeTool",
-    "body": "\\$_EscapeTool",
-    "description": "Utility for escaping special characters in Cascade."
+  ".metadata.title": {
+    "prefix": ".metadata.title",
+    "body": ".metadata.title",
+    "description": "Returns the Title of the asset."
   },
-  ".getChild": {
-    "prefix": ".getChild",
-    "body": ".getChild(\"${0:identifier}\")",
-    "description": "Prototype object for advanced scripting capabilities."
+  ".metadata.displayName": {
+    "prefix": ".metadata.displayName",
+    "body": ".metadata.displayName",
+    "description": "Returns the Display Name of the asset."
+  },
+  ".metadata.summary": {
+    "prefix": ".metadata.summary",
+    "body": ".metadata.summary",
+    "description": "Returns the Summary of the asset."
+  },
+  ".metadata.teaser": {
+    "prefix": ".metadata.teaser",
+    "body": ".metadata.teaser",
+    "description": "Returns the Teaser of the asset."
+  },
+  ".metadata.keywords": {
+    "prefix": ".metadata.keywords",
+    "body": ".metadata.keywords",
+    "description": "Returns the Keywords of the asset."
+  },
+  ".metadata.description": {
+    "prefix": ".metadata.description",
+    "body": ".metadata.description",
+    "description": "Returns the Description of the asset."
+  },
+  ".metadata.author": {
+    "prefix": ".metadata.author",
+    "body": ".metadata.author",
+    "description": "Returns the Author of the asset."
+  },
+  ".metadata.startDate": {
+    "prefix": ".metadata.startDate",
+    "body": ".metadata.startDate",
+    "description": "Returns the Start Date of the asset."
+  },
+  ".metadata.endDate": {
+    "prefix": ".metadata.endDate",
+    "body": ".metadata.endDate",
+    "description": "Returns the End Date of the asset."
+  },
+  ".metadata.reviewDate": {
+    "prefix": ".metadata.reviewDate",
+    "body": ".metadata.reviewDate",
+    "description": "Returns the Review Date of the asset."
+  },
+  ".metadata.getDynamicField": {
+    "prefix": ".metadata.getDynamicField",
+    "body": ".metadata.getDynamicField(\"${0:field name}\")",
+    "description": "Returns the Dynamic/Custom metadata field of the asset"
+  },
+  "Asset.label": {
+    "prefix": ".label",
+    "body": ".label",
+    "description": "Returns Display Name if it exists, Title if it exists and Display name is empty. If neither exists, returns asset name."
+  },
+  "Asset.name": {
+    "prefix": ".name",
+    "body": ".name",
+    "description": "Returns name of the page."
+  },
+  "Asset.link": {
+    "prefix": ".link",
+    "body": ".link",
+    "description": "Returns the link to the page."
+  },
+  "Asset.path": {
+    "prefix": ".path",
+    "body": ".path",
+    "description": "Returns path of the page."
+  },
+  "Asset.assetType": {
+    "prefix": ".path",
+    "body": ".path",
+    "description": "Returns path of the page."
+  },
+  "Asset.tags": {
+    "prefix": ".tags",
+    "body": ".tags",
+    "description": "Returns the tags of the asset as an array."
+  },
+  "Asset.parentFolder": {
+    "prefix": ".parentFolder",
+    "body": ".parentFolder",
+    "description": "Returns the parent folder of the asset. Can use all asset properties on this."
   },
   ".getStructuredDataNode": {
     "prefix": ".getStructuredDataNode",
-    "body": ".getStructuredDataNode(\"${0:data_node}\")",
-    "description": "Prototype object for advanced scripting capabilities."
+    "body": ".getStructuredDataNode(\"${0: node}\")",
+    "description": "Returns a data definition node of the identifier."
+  },
+  ".getChild": {
+    "prefix": ".getChild",
+    "body": ".getChild(\"${0: node}\")",
+    "description": "Returns the node from the data definition."
+  },
+  ".getChildren": {
+    "prefix": ".getChildren",
+    "body": ".getChildren(\"${0: node}\")",
+    "description": "Returns an array of nodes from the data definition."
+  },
+  ".textValue": {
+    "prefix": ".textValue",
+    "body": ".textValue",
+    "description": "Returns the value of Text Field, Text Area, WYSIWYG, Radio Buttons, and Drop Downs."
+  },
+  ".textValues": {
+    "prefix": ".textValues",
+    "body": ".textValues",
+    "description": "Returns the value of a Check Box."
+  },
+  ".asset": {
+    "prefix": ".asset",
+    "body": ".asset",
+    "description": "Makes a database call and returns info on Page, File, or Block Choosers."
   }
 }

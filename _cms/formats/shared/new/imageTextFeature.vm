@@ -45,7 +45,6 @@
 #end
 
 <style>
-
 .itf--blue .itf_content {
     background-color: #002D5B;
 }
