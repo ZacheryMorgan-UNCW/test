@@ -28,8 +28,8 @@
 ## ie: "sharedLink"
 #set($button = $row.getChild("button"))
 
-<div class="itf itf--${style} container">
-    <div class="itf_image"><img src="[system-asset]${image.path}[/system-asset]" alt=""></div>
+<div class="itf itf--${style} bg--${style} ${image-alignment} container">
+    <div class="itf_image"><img src="[system-asset]${image.path}[/system-asset]" alt="${imageAlt}"></div>
     <div class="itf_content">
         <h2>${title}</h2>
         <p>${description}</p>
@@ -45,36 +45,44 @@
 #end
 
 <style>
-.itf--blue .itf_content {
+/*is it easier to do the following for background-colors, or should we do something like
+.bg--blue as a global variable so anything can use it */
+
+.itf--blue {
     background-color: #002D5B;
 }
 
-.itf--teal .itf_content {
+.itf--teal {
     background-color: #008485;
 }
 
-.itf--grey .itf_content {
+.itf--grey {
     background-color: #F3F3F0;
 }
 
-.itf a,
-.itf h2 {
+/*these should all be defined by selector and not component
+if needed, components can have class font--lato / font--lora  */
+
+.itf :is(a, h2) {
     font-family: Lato;
 }
 
-.itf--grey a,
-.itf--grey h2 {
+/*is it easier to do this or to have classes color--teal / color--gold
+only issue is assigning these with backgrounds
+ie: background is navy, so color needs to be gold
+if statements to handle above classes versus more css
+also, is an a and an h2 always going to be teal if the background is grey? no because an anchor in grey wysiwyg is black
+below method might be best??? would required 3 classes: .itf .itf--grey .bg--grey  */
+
+.itf--grey :is(a, h2) {
     color: #008485;
 }
 
-.itf--blue a,
-.itf--blue h2 {
+.itf--blue :is(a, h2) {
     color: #FCC200;
 }
 
-.itf--teal a,
-.itf--teal h2,
-.itf-teal p {
+.itf--teal :is(a, h2, p) {
     color: #FFF;
 }
 
@@ -93,7 +101,6 @@
     flex-direction: column;
     padding: 30px;
     gap: 20px;
-    ## background: #f3f3f0;
 }
 
 .itf_content p {
@@ -118,7 +125,7 @@
         grid-area: content;
     }
 
-    .itf.row-reverse {
+    .itf.right {
         grid-template-areas: "content image";
     }
 }
