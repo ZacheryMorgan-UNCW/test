@@ -1,4 +1,5 @@
-#macro(imageTextFeature)
+## #macro(imageTextFeature)
+#macro(textImageFeature)
 ## What does this do???
 #set($block = $row.getChild("block").asset)
 
@@ -9,7 +10,7 @@
 
 #set($style = $row.getChild("style").textValue.toLowerCase()) ## "Blue", "Teal", "Grey"
 
-#set($imageAlignment = $row.getChild("image-alignment").textValue) ## "Left", "Right"
+#set($imageAlignment = $row.getChild("image-alignment").textValue.toLowerCase()) ## "Left", "Right"
 
 #set($image = $row.getChild("image").asset)
 
@@ -28,8 +29,8 @@
 ## ie: "sharedLink"
 #set($button = $row.getChild("button"))
 
-<div class="itf itf--${style} bg--${style} ${image-alignment} container">
-    <div class="itf_image"><img src="[system-asset]${image.path}[/system-asset]" alt="${imageAlt}"></div>
+<div class="itf itf--${style} bg--${style} ${imageAlignment} container gx-0">
+    <div class="itf_image"><img src="[system-asset]${image.path}[/system-asset]" alt="${imageAlt}"/></div>
     <div class="itf_content">
         <h2>${title}</h2>
         <p>${description}</p>
@@ -82,6 +83,10 @@ below method might be best??? would required 3 classes: .itf .itf--grey .bg--gre
     color: #FCC200;
 }
 
+.itf--blue p {
+    color: #FFF;
+}
+
 .itf--teal :is(a, h2, p) {
     color: #FFF;
 }
@@ -127,6 +132,63 @@ below method might be best??? would required 3 classes: .itf .itf--grey .bg--gre
 
     .itf.right {
         grid-template-areas: "content image";
+    }
+}
+
+.itf {
+    margin-bottom: 40px;
+    display: grid;
+}
+
+.itf_image img {
+    width: 100%;
+    height: 100%;
+}
+
+.itf_content {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    background: #f3f3f0;
+}
+
+.itf_content p {
+    margin-bottom: 20px;
+}
+
+.itf a {
+    font-weight: bold;
+}
+
+.itf a,
+.itf h2 {
+    font-family: Lato;
+    /*color: #008485;*/
+}
+
+@media (min-width: 992px) {
+    .itf {
+        /*     grid-template-columns: 1fr 1fr; */
+        /*     grid-template-areas: "image content"; */
+        display: flex;
+    }
+
+    .itf_image {
+        grid-area: image;
+        /*     flex: 0 0 auto; */
+        flex: 1;
+        width: auto;
+    }
+
+    .itf_content {
+        grid-area: content;
+        flex: 1 0 0;
+    }
+
+    .itf.right {
+        /*     grid-template-areas: "content image"; */
+        flex-direction: row-reverse;
     }
 }
 </style>
